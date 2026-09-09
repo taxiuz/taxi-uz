@@ -3,239 +3,605 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxi UZ — Haydovchi bo'ling</title>
+
+    <title>Taxi UZ — Tez, qulay va ishonchli taksi</title>
+    <meta name="description" content="Taxi UZ — O‘zbekistonda tez, qulay va ishonchli taksi xizmati. Standard, Lux va Lider tariflari.">
+    <meta name="keywords" content="Taxi UZ, taksi, taxi, Uzbekistan, Margilon, Fargona, Lux taxi">
+
     <style>
         :root {
-            --primary: #FFCC00;
-            --dark: #111111;
-            --light-gray: #F4F5F7;
-            --white: #FFFFFF;
+            --yellow: #FFCC00;
+            --yellow-dark: #e6b800;
+            --black: #111111;
+            --dark: #1a1a1a;
+            --gray: #f5f5f5;
+            --white: #ffffff;
+            --text: #222222;
+            --muted: #777777;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--light-gray);
-            color: var(--dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Arial, sans-serif;
+            background: var(--gray);
+            color: var(--text);
             line-height: 1.6;
         }
 
+        /* HEADER */
+
         header {
-            background-color: var(--dark);
-            color: var(--primary);
-            padding: 15px 20px;
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .hero {
-            background: linear-gradient(135deg, var(--dark) 80%, #222222 100%);
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--yellow);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
             color: var(--white);
-            padding: 60px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        .driver-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                radial-gradient(circle at top right, #333 0%, transparent 40%),
+                linear-gradient(135deg, #111111, #222222);
+
+            color: var(--white);
+            padding: 70px 20px 80px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            color: var(--primary);
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: var(--yellow);
             margin-bottom: 15px;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #CCCCCC;
+            color: #d5d5d5;
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 35px;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--dark);
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            font-weight: bold;
+        /* ORDER BOX */
+
+        .order-box {
+            background: var(--white);
+            color: var(--text);
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+            text-align: left;
+        }
+
+        .order-box h2 {
+            text-align: center;
+            margin-bottom: 22px;
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: 2px solid var(--yellow);
+            border-color: transparent;
+        }
+
+        .main-btn {
+            display: block;
+            width: 100%;
             border: none;
-            border-radius: 8px;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
 
-        .btn-primary:hover {
-            transform: scale(1.03);
+        .main-btn:hover {
+            background: var(--yellow-dark);
+            transform: translateY(-1px);
         }
+
+        .notice {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        /* SECTIONS */
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            margin-bottom: 35px;
         }
 
-        .grid {
+        /* TARIFFS */
+
+        .tariffs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
-        .card {
+        .tariff {
             background: var(--white);
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
 
-        .card h3 {
+        .tariff-icon {
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            color: var(--dark);
         }
 
-        .form-section {
+        .tariff h3 {
+            margin-bottom: 8px;
+        }
+
+        .tariff p {
+            color: var(--muted);
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
             background: var(--white);
-            padding: 40px 20px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            max-width: 600px;
-            margin: 40px auto;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
         }
 
-        .form-group {
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* DRIVER */
+
+        .driver-section {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .driver-section h2 {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .driver-section p {
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .driver-link {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* BONUS */
+
+        .bonus {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .bonus h2 {
+            margin-bottom: 10px;
+        }
+
+        .bonus p {
+            color: var(--muted);
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .bonus-link {
+            display: inline-block;
+            background: var(--black);
+            color: var(--yellow);
+            padding: 12px 25px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 700;
         }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #DDD;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: 2px solid var(--primary);
-            border-color: transparent;
-        }
+        /* FOOTER */
 
         footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--dark);
+            background: #0b0b0b;
             color: #888;
+            text-align: center;
+            padding: 30px 20px;
             font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            color: var(--yellow);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            nav a:not(.driver-btn) {
+                display: none;
+            }
+
+            .tariffs {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 14px 15px;
+            }
+
+            .hero {
+                padding: 50px 15px 60px;
+            }
+
+            .order-box {
+                padding: 20px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 45px 15px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div>🚕 TAXI UZ</div>
-        <a href="#register" class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Ariza berish</a>
-    </header>
+<!-- HEADER -->
 
-    <section class="hero">
-        <h1>TAXI UZ HAYDOVCHISI BO‘LING</h1>
-        <p>Buyurtmalarni qabul qiling. Erkin grafikda ishlang. Daromadingizni oshiring.</p>
-        <a href="#register" class="btn-primary">Haydovchi bo‘lish</a>
-    </section>
+<header>
+    <div class="logo">🚕 TAXI UZ</div>
 
-    <section class="container">
-        <h2 class="section-title">Nega aynan Taxi UZ?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📈 Ko‘proq buyurtma</h3>
-                <p>Doimiy buyurtmalar oqimi va minimal bo'sh vaqt.</p>
-            </div>
-            <div class="card">
-                <h3>📱 Qulay ilova</h3>
-                <p>TMDriver va zamonaviy avtomatlashtirilgan tizim.</p>
-            </div>
-            <div class="card">
-                <h3>💎 Shaffof shartlar</h3>
-                <p>Yashirin komissiyalarsiz, kunlik daromad nazorati.</p>
-            </div>
-            <div class="card">
-                <h3>🛟 24/7 Yordam</h3>
-                <p>Har qanday vaziyatda tezkor qo'llab-quvvatlash xizmati.</p>
-            </div>
+    <nav>
+        <a href="#tariffs">Tariflar</a>
+        <a href="#bonus">Bonus</a>
+        <a href="#driver" class="driver-btn">Haydovchi bo‘lish</a>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>TEZ. QULAY. ISHONCHLI.</h1>
+
+    <p>
+        Taxi UZ — O‘zbekiston shaharlari uchun zamonaviy
+        taksi xizmati.
+    </p>
+
+    <div class="order-box">
+
+        <h2>🚕 Taksi buyurtma qilish</h2>
+
+        <div class="input-group">
+            <label for="from">📍 Qayerdan?</label>
+            <input
+                type="text"
+                id="from"
+                placeholder="Manzilingizni kiriting">
         </div>
-    </section>
 
-    <section class="container" style="background: var(--white); border-radius: 12px; padding: 40px 20px;">
-        <h2 class="section-title">Ishni boshlash tartibi</h2>
-        <div class="grid">
-            <div class="card" style="box-shadow:none; border-left: 4px solid var(--primary);">
-                <strong>1. Ariza</strong>
-                <p>Onlayn formani to'ldiring.</p>
-            </div>
-            <div class="card" style="box-shadow:none; border-left: 4px solid var(--primary);">
-                <strong>2. Tekshiruv</strong>
-                <p>Hujjatlar AI/HR tomonidan tezkor ko'rib chiqiladi.</p>
-            </div>
-            <div class="card" style="box-shadow:none; border-left: 4px solid var(--primary);">
-                <strong>3. TMDriver</strong>
-                <p>Ilovani yuklab oling va tizimga kiring.</p>
-            </div>
-            <div class="card" style="box-shadow:none; border-left: 4px solid var(--primary);">
-                <strong>4. Buyurtmalar</strong>
-                <p>Liniyaga chiqing va daromad olishni boshlang.</p>
-            </div>
+        <div class="input-group">
+            <label for="to">📍 Qayerga?</label>
+            <input
+                type="text"
+                id="to"
+                placeholder="Boradigan manzilingiz">
         </div>
-    </section>
 
-    <section class="container" id="register">
-        <div class="form-section">
-            <h2 style="text-align: center; margin-bottom: 20px;">Haydovchilikka ariza topshirish</h2>
-            <form id="driverForm">
-                <div class="form-group">
-                    <label for="fullName">F.I.SH.</label>
-                    <input type="text" id="fullName" placeholder="Ism va familiyangiz" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefon raqam</label>
-                    <input type="tel" id="phone" value="+998 " required>
-                </div>
-                <div class="form-group">
-                    <label for="experience">Haydovchilik staji (yil)</label>
-                    <select id="experience" required>
-                        <option value="1-3">1 - 3 yil</option>
-                        <option value="3-5">3 - 5 yil</option>
-                        <option value="5+">5 yildan ortiq</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="hasCar">Shaxsiy avtomobilingiz bormi?</label>
-                    <select id="hasCar" required>
-                        <option value="yes">Ha, bor</option>
-                        <option value="no">Yo'q (Arenda/Park avto kerak)</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Arizani yuborish</button>
-            </form>
+        <div class="input-group">
+            <label for="tariff">🚕 Tarif</label>
+
+            <select id="tariff">
+                <option value="standard">Standard</option>
+                <option value="lux">Lux</option>
+                <option value="lider">Lider</option>
+            </select>
         </div>
-    </section>
 
-    <footer>
-        &copy; 2026 Taxi UZ. Barcha huquqlar himoyalangan.
-    </footer>
+        <button
+            class="main-btn"
+            onclick="orderTaxi()">
+            🚕 TAKSI BUYURTMA QILISH
+        </button>
+
+        <div class="notice">
+            Buyurtma berish tizimi bosqichma-bosqich ishga tushiriladi.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TARIFFS -->
+
+<section class="container" id="tariffs">
+
+    <h2 class="section-title">Bizning tariflar</h2>
+
+    <div class="tariffs">
+
+        <div class="tariff">
+            <div class="tariff-icon">🚕</div>
+            <h3>Standard</h3>
+            <p>Kundalik safarlar uchun qulay va hamyonbop tarif.</p>
+        </div>
+
+        <div class="tariff">
+            <div class="tariff-icon">💎</div>
+            <h3>Lux</h3>
+            <p>Yuqori darajadagi avtomobillar va qulaylik.</p>
+        </div>
+
+        <div class="tariff">
+            <div class="tariff-icon">👔</div>
+            <h3>Lider</h3>
+            <p>Korporativ mijozlar va biznes safarlari uchun.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="container">
+
+    <h2 class="section-title">Nega Taxi UZ?</h2>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Tez</h3>
+            <p>Buyurtmani tez va qulay yuborish imkoniyati.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>Qulay</h3>
+            <p>Telefon va zamonaviy texnologiyalar orqali foydalanish.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Ishonchli</h3>
+            <p>Mijoz ma'lumotlariga ehtiyotkorlik bilan munosabat.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🎁</div>
+            <h3>Bonuslar</h3>
+            <p>Bonus va aksiyalar tizimi rivojlantiriladi.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BONUS -->
+
+<section class="container" id="bonus">
+
+    <div class="bonus">
+
+        <h2>🎁 Taxi UZ Bonus</h2>
+
+        <p>
+            Safarlardan bonus yig‘ing va kelajakdagi
+            takliflardan foydalaning.
+        </p>
+
+        <a href="bonus.html" class="bonus-link">
+            Bonuslar haqida
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- DRIVER -->
+
+<section class="driver-section" id="driver">
+
+    <h2>🚗 Taxi UZ haydovchisi bo‘ling</h2>
+
+    <p>
+        Buyurtmalarni qabul qiling va o‘zingizga qulay
+        grafikda ishlang.
+    </p>
+
+    <a href="driver.html" class="driver-link">
+        Haydovchi bo‘lish
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 Taxi UZ. Barcha huquqlar himoyalangan.
+    </p>
+
+    <p style="margin-top:10px;">
+
+        <a href="privacy-policy.html">
+            Maxfiylik siyosati
+        </a>
+
+        |
+
+        <a href="bonus.html">
+            Bonuslar
+        </a>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+function orderTaxi() {
+
+    const from = document.getElementById("from").value.trim();
+    const to = document.getElementById("to").value.trim();
+    const tariff = document.getElementById("tariff").value;
+
+    if (!from || !to) {
+
+        alert("Iltimos, qayerdan va qayerga borishingizni kiriting.");
+
+        return;
+    }
+
+    alert(
+        "Buyurtma oynasi tayyor.\n\n" +
+        "Qayerdan: " + from + "\n" +
+        "Qayerga: " + to + "\n" +
+        "Tarif: " + tariff.toUpperCase() +
+        "\n\nReal buyurtma tizimi keyingi bosqichda ulanadi."
+    );
+}
+
+</script>
 
 </body>
 </html>
